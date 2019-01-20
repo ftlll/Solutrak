@@ -1,0 +1,11 @@
+.data-header {
+  height: 50px;
+  width: 68%;
+  background-color: #3A3E52;
+  padding: 15px;
+  margin-bottom: 30px;
+}
+
+.data-select {
+  background-color: #3A3E52;
+}

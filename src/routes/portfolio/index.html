@@ -1,0 +1,74 @@
+<template>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/common/template"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/grid/grid-command"></require>
+  <require from="aurelia-kendoui-bridge/dropdownlist/dropdownlist"></require>
+
+  <require from="./portfolio.css"></require>
+  <div class="auth-section row">
+    <div class="col-md-3">
+      <div class="search">
+        <input type="text" class="callback-input" />
+        <a class="btn btn-primary mnt-regular-normal">SEARCH</a>
+      </div>
+      <ak-grid k-data-source.bind="buildings"
+               k-no-init.bind="true"
+               view-model.ref="myGrid"
+               k-selectable="row"
+               k-on-change.delegate="rowSelected($event.detail)">
+        <ak-col k-title="Name" k-field="buildingName"></ak-col>
+      </ak-grid>
+    </div>
+    <div class="col-md-9">
+      <div class="action">
+        <div class="search-rules">
+          <div class="col-sm-12 search-row">
+            <span class="mnt-semi-bold-normal white-20p">Report#</span>
+            <input class="callback-input" type="text">
+          </div>
+          <div class="col-sm-6 search-row">
+            <span class="mnt-semi-bold-normal white-20p">From:</span>
+            <input class="callback-input" type="date">
+          </div>
+          <div class="col-sm-6 search-row">
+            <span class="mnt-semi-bold-normal white-20p">To:</span>
+            <input class="callback-input" type="date">
+          </div>
+          <div class="col-sm-10 search-row">
+            <span class="mnt-semi-bold-normal white-20p">Status:</span>
+            <label class="mnt-semi-bold-normal white-14p"><input type="checkbox" />Completed</label>
+            <label class="mnt-semi-bold-normal white-14p"><input type="checkbox" />Incomplete</label>
+          </div>
+          <div class="col-sm-2 search-row">
+            <a class="btn btn-primary mnt-regular-normal white-16p">Add Govenment Report</a>
+          </div>
+          <div class="col-sm-10 search-row">
+            <span class="mnt-semi-bold-normal white-20p">Type:</span>
+            <label class="mnt-semi-bold-normal white-14p"><input type="radio" name="only">Govenment</label>
+            <label class="mnt-semi-bold-normal white-14p"><input type="radio" name="only">Consultant</label>
+            <a class="btn btn-primary mnt-regular-normal">SEARCH</a>
+          </div>
+          <div class="col-sm-2 search-row">
+            <a class="btn btn-primary mnt-regular-normal white-16p">Add Consultant Report</a>
+          </div>
+        </div>
+        <!--<ak-grid k-data-source.bind="buildings"
+                 k-no-init.bind="true"
+                 view-model.ref="myGrid"
+                 k-selectable="row"
+                 k-on-change.delegate="rowSelected($event.detail)">
+          <ak-col k-title="Name" k-field="buildingName"></ak-col>
+          <ak-col k-title="Name" k-field="buildingName"></ak-col>
+          <ak-col k-title="Name" k-field="buildingName"></ak-col>
+        </ak-grid>-->
+
+      </div>
+    </div>
+  </div>
+</template>
+
+<!--<label class="mnt-semi-bold-normal white-14p"><input type="radio" name="only">Completed</label>
+<label class="mnt-semi-bold-normal white-14p"><input type="radio" name="only">Pending</label>
+<label class="mnt-semi-bold-normal white-14p"><input type="radio" name="only">All</label>
+<a class="btn btn-primary mnt-regular-normal">SEARCH</a>-->

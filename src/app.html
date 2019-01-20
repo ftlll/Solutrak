@@ -1,0 +1,22 @@
+<template>
+  <require from='./css/no-auth.css'></require>
+  <require from='./css/site.css'></require>
+  <require from='./css/font-shortcuts.css'></require>
+  <require from='./css/bt.css'></require>
+  <div class="container no-auth-wrapper">
+    <div class="no-auth-box">
+      <div class="row">
+        <div class="col-md-12 content-wrapper">
+          <div class="no-auth-logo text-center">
+            <a href="#" title="Home">
+              <img src="/assets/img/logo.png" alt="logo" />
+            </a>
+          </div>
+          <router-view></router-view>
+        </div>
+      </div>
+    </div>
+  </div>
+  <loading-indicator loading.bind="router.isNavigating || api.client.isRequesting"></loading-indicator>
+</template>
+

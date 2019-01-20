@@ -1,0 +1,13 @@
+<template>
+  <require from="./secret-message"></require>
+
+  <!--<p>
+    Secret Message: <input type="text" value.bind="message">
+  </p>-->
+  <p>
+    Allow Message to Destruct? <input type="checkbox" checked.bind="allowDestruction">
+  </p>
+  <secret-message message.bind="message" allow-destruction.bind="allowDestruction"></secret-message>
+</template>
+
+

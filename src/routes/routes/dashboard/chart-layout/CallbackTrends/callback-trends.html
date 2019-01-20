@@ -1,0 +1,79 @@
+<template>
+  <require from="aurelia-kendoui-bridge/chart/chart"></require>
+
+  <div class="date-selection white-16p">
+    <p class="white-16p">Call backs of your buildings portfolio between<input type="date" value.bind="beginningDate" style="color: black" /> to <input type="date" value.bind="endingDate" style="color: black" /></p>
+    <p>If you wish to change the date range, please modify the dates and click
+      <a class="btn btn-primary mnt-regular-normal" click.delegate="selectDate()">Retrive Data</a>button.
+    </p>
+  </div>
+  <table style="width: 100%">
+    <tr>
+      <td>
+        <ak-chart k-title.bind="title1"
+                  k-legend.bind="legend"
+                  k-chart-area.bind="{ background: '#2A2D3C'}"
+                  k-series-defaults.bind="{type: 'line', stack: true}"
+                  k-series.bind="series"
+                  k-value-axis.bind="valueAxis"
+                  k-category-axis.bind="categoryAxis"
+                  k-tooltip.bind="tooltip"
+                  k-theme="MaterialBlack"
+                  k-pannable.bind="{lock: 'y'}"
+                  k-zoomable.bind="zoomable"
+                  k-on-series-click.delegate="onSeriesClick($event.detail)"
+                  view-model.ref="chart1">
+        </ak-chart>
+      </td>
+      <td>
+        <ak-chart k-title.bind="title2"
+                  k-legend.bind="legend"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-series-defaults.bind="{type: 'column'}"
+                  k-series.bind="series"
+                  k-value-axis.bind="valueAxis"
+                  k-category-axis.bind="categoryAxis"
+                  k-tooltip.bind="tooltip"
+                  k-theme="MaterialBlack"
+                  k-pannable.bind="{lock: 'y'}"
+                  k-zoomable.bind="zoomable"
+                  k-on-series-click.delegate="onSeriesClick($event.detail)"
+                  view-model.ref="chart2">
+        </ak-chart>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ak-chart k-title.bind="title3"
+                  k-legend.bind="legend"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-series-defaults.bind="{type: 'line', stack: true}"
+                  k-series.bind="seriesDevice"
+                  k-value-axis.bind="valueAxis"
+                  k-category-axis.bind="categoryAxis"
+                  k-tooltip.bind="tooltip"
+                  k-theme="MaterialBlack"
+                  k-pannable.bind="{lock: 'y'}"
+                  k-zoomable.bind="zoomable"
+                  view-model.ref="chart3">
+        </ak-chart>
+      </td>
+      <td>
+        <ak-chart k-title.bind="title4"
+                  k-legend.bind="legend"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-series-defaults.bind="{type: 'column'}"
+                  k-series.bind="seriesDevice"
+                  k-value-axis.bind="valueAxis"
+                  k-category-axis.bind="categoryAxis"
+                  k-tooltip.bind="tooltip"
+                  k-theme="MaterialBlack"
+                  k-pannable.bind="{lock: 'y'}"
+                  k-zoomable.bind="zoomable"
+                  view-model.ref="chart4">
+        </ak-chart>
+      </td>
+    </tr>
+  </table>
+
+</template>

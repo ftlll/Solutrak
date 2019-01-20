@@ -1,0 +1,50 @@
+<template>
+  <div class="row auth-header navbar-fixed-top">
+    <div class="col-md-4 logo">
+      <a href="/#/dashboard" class="pull-left"  click.delegate="nav.goTo(nav.items[0])">
+        <img style="height: 43px" src="/assets/img/logo.png" alt="e-volve" />
+      </a>
+    </div>
+    <!-- end logo -->
+    <div class="col-md-8">
+      <div class="row" if.bind="auth.isAuthenticated()">
+        <div class="col-md-12">
+          <ul class="list-inline sltrk-menu">
+
+            <li css="background-color: ${cntxMenu.isOpened == true ? '#191A23' : 'rgba(54, 75, 104, 1)'}">
+              <a href="#" class="dropdown-toggle" click.delegate="cntxMenu.toggle()">
+                <img class="sltrk-profile-img" id="headerProfileImg" alt="profile" />
+                <img style="margin-left: 8px;"
+                     src.bind="cntxMenu.isOpened == true ? '/assets/img/chevron-right.png' : '/assets/img/chevron-left.png'"
+                     alt="arrow" />
+              </a>
+              <ul class="dropdown-menu" id="sltrk-cntxt-menu"
+                  css="display: ${cntxMenu.isOpened == true ? 'block' : 'none'}">
+                <li>
+                  <a href="#/profile">
+                    <img src="/assets/img/icon-edit-info.png" alt="edit">
+                    <span class="mnt-light-normal white-16p" style="margin-left: 12px !important;">Edit info</span>
+                  </a>
+                  <div class="separator"></div>
+                </li>
+                <li>
+                  <a click.delegate="changePassword()">
+                    <img src="/assets/img/icon-change-password.png" alt="change">
+                    <span class="mnt-light-normal white-16p">Change password</span>
+                  </a>
+                  <div class="separator"></div>
+                </li>
+                <li>
+                  <a click.trigger="doLogout()">
+                    <img src="/assets/img/icon-sign-out.png" alt="signout">
+                    <span class="mnt-light-normal white-16p">Sign out</span>
+                  </a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div><!-- /row -->
+    </div>
+  </div>
+</template>

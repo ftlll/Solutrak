@@ -1,0 +1,284 @@
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  vertical-align: middle;
+}
+
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+  border: none;
+}
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  border-top: 1px solid #45495D;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color: rgb(63, 67, 89);
+}
+
+
+.table > tbody > tr > td, .table > tbody > tr > th, .table > tfoot > tr > td, .table > tfoot > tr > th, .table > thead > tr > td, .table > thead > tr > th {
+  padding-bottom: 25px;
+  padding-top: 25px;
+}
+
+  .table > tbody > tr > td:first-child, .table > tbody > tr > th:first-child, .table > tfoot > tr > td:first-child, .table > tfoot > tr > th:first-child, .table > thead > tr > td:first-child, .table > thead > tr > th:first-child {
+    padding-left: 62px;
+  }
+
+.table-card {
+  color: #D7DADE;
+  font-size: 16px;
+  font-family: 'Montserrat';
+}
+
+
+.table-card {
+  background-color: rgba(58, 62, 82, 1);
+  border-radius: 4px;
+}
+
+.table-card-header {
+  height: 65px;
+  vertical-align: middle;
+  display: inline-block;
+  padding-left: 28px;
+  padding-right: 28px;
+  width: 100%;
+}
+
+.table > thead > tr > th {
+  vertical-align: middle;
+  border-bottom: none;
+  background: #364B68;
+}
+
+.create-btn {
+  margin-top: 15px;
+  float: right;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  color: #989AA5;
+  margin-right: 50px;
+}
+
+.back-carret {
+  border-radius: 2px;
+  padding-left: 10px;
+  padding-right: 12px;
+  margin-left: -40px;
+  background-color: #42475E;
+  border: 1px solid rgba(115, 122, 161, 1);
+  margin-top: 15px;
+  color: rgba(115, 122, 161, 1);
+}
+
+  .back-carret:hover {
+    background: rgba(115, 122, 161, 1);
+    color: #42475E;
+  }
+
+  .back-carret.device {
+    margin: 0;
+    background: #364b68;
+    border-color: #5b7dab;
+    color: #fbfbfc;
+  }
+
+    .back-carret.device:hover {
+      background: rgba(115, 122, 161, 1);
+      color: #42475E;
+    }
+
+.card-item-wrapper > .table-card {
+  margin: 0 -40px;
+}
+
+  .card-item-wrapper > .table-card > .table-card-header {
+    height: inherit;
+    padding: 0;
+    margin-top: -43px;
+  }
+
+    .card-item-wrapper > .table-card > .table-card-header > .card-header {
+      background: #34547A;
+      position: relative;
+    }
+
+.table-card > datatable > .table.table-hover > thead > tr > th > a {
+  color: white;
+  cursor: pointer;
+}
+
+.card-item-wrapper > .table-card > datatable > .table {
+  margin-bottom: 0 !important;
+}
+
+  .card-item-wrapper > .table-card > datatable > .table > tbody > tr > td,
+  .card-item-wrapper > .table-card > datatable > .table > tbody > tr > th,
+  .card-item-wrapper > .table-card > datatable > .table > tfoot > tr > td,
+  .card-item-wrapper > .table-card > datatable > .table > tfoot > tr > th {
+    background: #34547A;
+    border-top: 1px solid rgba(156, 161, 178, 0.16);
+  }
+
+.card-item-wrapper > .table-card > datatable {
+  display: inline-block;
+  overflow-y: scroll;
+  width: 100%;
+  height: 400px;
+  overflow-x: hidden;
+}
+
+.table-events-arrow {
+  border-style: solid;
+  border-width: 0 17.5px 20px 17.5px;
+  border-color: transparent transparent #34547a transparent;
+  margin-left: 65px;
+}
+
+.icon-gray {
+  color: gray;
+}
+
+.datatable-sort-icon {
+  padding-left: 5px;
+}
+
+.events-header-type {
+  display: inline-block;
+  float: left;
+}
+
+.events-type-icon {
+  margin-right: 16px;
+  padding-top: 8px;
+}
+
+.events-header-status {
+  display: inline-block;
+  margin-left: 65px;
+  border-left: 7px solid #5D7695;
+  padding-left: 20px;
+}
+
+  .events-header-status.Guarded {
+    border-left: 7px solid #2196f3;
+  }
+
+  .events-header-status.Running {
+    border-left: 7px solid #21ad43;
+  }
+
+  .events-header-status.Offline {
+    border-left: 7px solid #c5c5c5;
+  }
+
+  .events-header-status.Alert {
+    border-left: 7px solid #ff6f00;
+  }
+
+  .events-header-status.Emergency {
+    border-left: 7px solid #ff0000;
+  }
+
+  .events-header-status.Elevated {
+    border-left: 7px solid #fff600;
+  }
+
+.events-header-message {
+  display: inline-block;
+  margin-left: 65px;
+  border-left: 7px solid #5D7695;
+  padding-left: 20px;
+}
+
+.events-header-close {
+  float: right;
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  right: 10px;
+}
+
+.notifications > .table-card-header {
+  padding-left: 0;
+}
+
+  .notifications > .table-card-header > .card-header {
+    background: none;
+  }
+
+.pagination > li > a, .pagination > li > span {
+  color: white !important;
+  background-color: #364b68 !important;
+  border: 1px solid #5b7dab !important;
+}
+
+.pagination > li > div {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: white !important;
+  text-decoration: none;
+}
+
+  .pagination > li > a:focus, .pagination > li > a:hover, .pagination > li > span:focus, .pagination > li > span:hover {
+    color: white !important;
+    background-color: #365b68 !important;
+    border-color: #5b7dab !important;
+  }
+
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+  color: #000000 !important;
+  background-color: #adb5df !important;
+  border-color: #adb5df !important;
+}
+
+.pagination > .disabled > a, .pagination > .disabled > a:focus, .pagination > .disabled > a:hover, .pagination > .disabled > span, .pagination > .disabled > span:focus, .pagination > .disabled > span:hover {
+  color: #fbfbfc !important;
+  background-color: #51709b !important;
+  border-color: #5b7dab !important;
+}
+
+.pager li > a, .pager li > span {
+  background-color: #fbfbfc !important;
+  border: 1px solid #ddd !important;
+}
+
+  .pager li > a:focus, .pager li > a:hover {
+    background-color: #eee !important;
+  }
+
+
+.pager .disabled > a, .pager .disabled > a:focus, .pager .disabled > a:hover, .pager .disabled > span {
+  color: #fbfbfc !important;
+  background-color: #51709b !important;
+}
+
+.datatable-pager {
+  display: grid;
+  margin-right: 10px;
+}
+
+  .datatable-pager > pager > nav > .pagination {
+    float: right;
+  }
+
+
+.tab-content-active {
+  display: block !important;
+}
+
+.tab-content {
+  position: relative;
+  display: none;
+  transition: opacity 0.4s ease;
+}
+
+.table > tbody + tbody {
+  border-top: 0;
+}

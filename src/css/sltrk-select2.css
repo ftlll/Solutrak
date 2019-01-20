@@ -1,0 +1,85 @@
+/********************
+Select2 Override style
+*********************/
+
+/* Assign min-width to container */
+.select2-container {
+  min-width: 250px;
+}
+
+  .select2-container .select2-selection--single {
+    height: 34px;
+  }
+
+.select2-container--default .select2-selection--single {
+  background-color: #ffffff;
+  border-radius: 2px !important;
+}
+
+  .select2-container--default .select2-selection--single .select2-selection__rendered,
+  .select2-container--default .select2-selection--single .select2-selection__placeholder {
+    color: #333333;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 16px;
+  }
+
+
+.select2-container .select2-selection--single .select2-selection__rendered {
+  display: block;
+  padding: 3px 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 34px;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 32px;
+}
+
+.select2-container--default .select2-selection--single {
+  background-color: #3A3E52;
+  color: white;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  border: 1px solid #4F546F;
+}
+
+  .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #E8E9EB;
+    line-height: 28px;
+    /* border: 1px solid #4F546F; */
+  }
+
+.select2-dropdown {
+  background-color: #3A3E52;
+  border: 1px solid #4F546F;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  left: -100000px;
+  width: 100%;
+  z-index: 1051;
+  color: #E8E9EB;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border: 1px solid #4F546F;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+  border: 1px solid #4F546F;
+  background-color: #3A3E52;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__rendered, .select2-container--default .select2-selection--single .select2-selection__placeholder {
+  color: #E8E9EB;
+}
+
+.select2-container--default .select2-results__option[aria-selected=true] {
+  background-color: #ddd;
+  color: black;
+}

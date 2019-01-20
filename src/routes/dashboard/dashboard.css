@@ -1,0 +1,97 @@
+.sliders {
+  width: 90%;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+}
+
+.charts {
+  margin-top: 220px;
+  width: 100%;
+}
+
+
+.pre {
+  position: absolute;
+  width: 30%;
+  height: auto;
+  left: -30%;
+  visibility: hidden;
+}
+
+.item .mid {
+  position: absolute;
+  width: 30%;
+  height: 200px;
+  left: 35%;
+}
+
+
+.item .active {
+  position: absolute;
+  width: 30%;
+  height: 200px;
+  left: 2.5%;
+}
+
+.item .right {
+  position: absolute;
+  width: 30%;
+  left: 67.5%;
+  height: 200px;
+}
+
+.item .next {
+  position: absolute;
+  width: 30%;
+  left: 100%;
+  visibility: hidden;
+}
+
+.caption {
+  text-align: center;
+  color: white;
+  font-size: 12px;
+}
+
+
+.prev {
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  left: -5%;
+  width: auto;
+  padding-right: 15%;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+.next1 {
+  border-radius: 3px 0 0 3px;
+  text-decoration: none;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: -5%;
+  width: auto;
+  padding-right: 15%;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+  /* On hover, add a black background color with a little bit see-through */
+  .prev:hover, .next:hover {
+    background-color: rgba(0,0,0,0.8);
+  }

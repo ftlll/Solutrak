@@ -1,0 +1,86 @@
+<template>
+  <require from="aurelia-kendoui-bridge/chart/chart"></require>
+  <require from="aurelia-kendoui-bridge/splitter/splitter"></require>
+  <require from='./../../../../css/table.css'></require>
+
+  <div class="date-selection white-16p">
+    <p class="white-16p">Call backs of your buildings portfolio between<input type="date" value.bind="beginningDate" style="color: black" /> to <input type="date" value.bind="endingDate" style="color: black" /></p>
+    <p>
+      If you wish to change the date range, please modify the dates and click
+      <a class="btn btn-primary mnt-regular-normal" click.delegate="selectDate()">Retrive Data</a>button.
+    </p>
+  </div>
+  <table style="width: 100%">
+    <tr>
+      <td colspan="2">
+        <ak-chart k-title.bind="{text: 'Callback Ratio during this period', align: 'center'}"
+                  k-data-source.bind="callbackRatio"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-legend.bind="{ visible: false }"
+                  k-series-defaults.bind="{type: 'bar'}"
+                  k-series.bind="series"
+                  k-value-axis.bind="valueAxis"
+                  k-category-axis.bind="categoryAxis"
+                  k-tooltip.bind="tooltip"
+                  k-on-series-click.delegate="onSeriesClick($event.detail)"
+                  view-model.ref="chart1"
+                  k-theme="MaterialBlack">
+        </ak-chart>
+        <div class="page-line">
+          <ul class="pagination" style="display: ${(pageNumber == 1) ? 'none' : ''}">
+            <li class="page-item"><a class="page-link" click.delegate="pagedec()">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" click.delegate="pagejump(1)">1</a></li>
+            <li class="page-item"><a class="page-link" click.delegate="pagejump(2)">2</a></li>
+            <li class="page-item" style="display: ${(pageNumber < 3) ? 'none' : ''}"><a class="page-link" click.delegate="pagejump(3)">3</a></li>
+            <li class="page-item"><a class="page-link" click.delegate="pageinc()">&raquo;</a></li>
+            <li><div class="white-12p">current page: ${buildingPage} / total page: ${buildingNumber}</div></li>
+          </ul>
+        </div>
+      </td>
+
+    </tr>
+    <tr>
+      <td>
+        <ak-chart k-title.bind="{text: 'Callback Ratio for devices during this period', align: 'center'}"
+                  k-data-source.bind="callbackRatioBuilding"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-legend.bind="{ visible: false }"
+                  k-series-defaults.bind="seriesDefault"
+                  k-series.bind="series"
+                  k-value-axis.bind="valueAxis"
+                  k-category-axis.bind="categoryBuilding"
+                  k-tooltip.bind="tooltip"
+                  k-theme="MaterialBlack"
+                  view-model.ref="chart2"
+                  k-on-series-click.delegate="onSeriesClickDevice($event.detail)">
+        </ak-chart>
+        <nav aria-label="Page navigation example" style="display: ${(deviceNumber == 1) ? 'none' : ''}">
+          <ul class="pagination">
+            <li class="page-item"><a class="page-link" click.delegate="devicePagedec()">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" click.delegate="devicePagejump(1)">1</a></li>
+            <li class="page-item"><a class="page-link" click.delegate="devicePagejump(2)">2</a></li>
+            <li class="page-item" style="display: ${(deviceNumber < 3) ? 'none' : ''}"><a class="page-link" click.delegate="devicePagejump(3)">3</a></li>
+            <li class="page-item"><a class="page-link" click.delegate="devicePageinc()">&raquo;</a></li>
+            <li><div class="white-16p">current page: ${devicePage} / total page: ${deviceNumber}</div></li>
+          </ul>
+        </nav>
+      </td>
+      <td>
+        <ak-chart k-title.bind="{text: 'Number of Callbacks', align: 'center'}"
+                  k-data-source.bind="callbackRatioDevice"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-legend.bind="{ visible: false }"
+                  k-series-defaults.bind="seriesDefault"
+                  k-series.bind="seriesDevice"
+                  k-value-axis.bind="valueDevice"
+                  k-tooltip.bind="tooltipDevice"
+                  k-theme="MaterialBlack"
+                  k-category-axis.bind="categoryDevice">
+        </ak-chart>
+
+      </td>
+    </tr>
+  </table>
+
+
+</template>

@@ -1,0 +1,46 @@
+<template>
+  <require from='./../../css/profile.css'></require>
+  <require from='./../../css/site.css'></require>
+  <require from="./data.css"></require>
+
+  <div class="profile-section row">
+
+    <div class="white-16p data-header" style="min-width:500px">
+      <span class="white-16p">Please select an Elevator Contractor you're acting as, for this transfer:</span>
+      <select class="data-select">
+        <option repeat.for="company of companys">${company}</option>
+      </select>
+
+    </div>
+    <div class="col-sm-3 profile-wrapper upload-box left" style="min-width:320px; margin-bottom: 30px">
+      <div style="margin-top:40px;" class="text-center">
+        <span class="mnt-medium-normal white-24p uppercase">upload excel file</span>
+      </div>
+      <div style="margin-top:70px; padding-left:35px; padding-right:35px" class="text-center white-16p">
+        You can upload the Activities or Callbacks excel file.
+        Please click Browse to select the file 
+        and click Upload to proceed (.xls and .xlsx only)
+      </div>
+      <div style="margin-top:85px;" class="text-center">
+        <form submit.delegate="doUploadImage()" class="fileUpload">
+          <div show.bind="selectedFiles == null" class="btn sltrk-btn mnt-semi-bold-normal white-16p" style="width:205px !important;">
+            <span class="uppercase">Choose file</span>
+            <input id="files" type="file" accept=".xlsx .xls" files.bind="selectedFiles" class="form-control upload">
+          </div>
+          <div if.bind="selectedFiles.length == 1">
+            <input type="submit" style="width:185px !important;" class="btn sltrk-btn mnt-semi-bold-normal white-16p uppercase " value="Upload" />
+            <a style="cursor:pointer; margin-left:40px; text-decoration:none; width:75px !important;" class="btn sltrk-btn mnt-semi-bold-normal white-16p " click.delegate="cancelUpload()">Cancel</a>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-sm-7 profile-wrapper upload-box right" style="min-width:520px">
+      <div style="margin-top:40px;" class="text-center">
+        <span class="mnt-medium-normal white-16p">Select a file</span>
+      </div>
+
+    </div>
+  </div>
+  
+</template>

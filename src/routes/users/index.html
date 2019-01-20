@@ -1,0 +1,47 @@
+<template>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/grid/grid-command"></require>
+  <require from="aurelia-kendoui-bridge/dropdownlist/dropdownlist"></require>
+
+  <require from="./users.css"></require>
+  <div class="auth-section row">
+    <div class="info col-md-12"></div>
+    <br />
+    <div class="search-bar">
+      <label class="mnt-semi-bold-normal white-16p">Search by: </label>
+      <label class="mnt-semi-bold-normal white-14p">Last Name</label>
+      <input type="text" />
+      <ak-drop-down-list k-data-text-field="name"
+                         k-data-value-field="id"
+                         k-data-source.bind="bti"
+                         k-value.two-way="buildingType">
+      </ak-drop-down-list>
+      <ak-drop-down-list k-data-text-field="name"
+                         k-data-value-field="id"
+                         k-data-source.bind="bti"
+                         k-value.two-way="buildingType">
+      </ak-drop-down-list>
+      <a class="btn btn-primary mnt-regular-normal">SEARCH</a>
+    </div>
+    <div class="user-info">
+      <div class="col-md-10">
+        <label class="mnt-semi-bold-normal white-26p">Users</label>
+      </div>
+      <div class="col-md-2">
+        <a class="btn btn-primary mnt-regular-normal">Add New User</a>
+      </div>
+      <ak-grid k-data-source.bind="datasource"
+               k-no-init.bind="true"
+               view-model.ref="myGrid"
+               k-selectable="row"
+               k-on-change.delegate="rowSelected($event.detail)">
+        <ak-col k-title="Name" k-field="buildingName"></ak-col>
+        <ak-col k-title="City" k-field="city"></ak-col>
+        <ak-col k-title="Address" k-field="address"></ak-col>
+      </ak-grid>
+
+    </div>
+    <br />
+  </div>
+</template>

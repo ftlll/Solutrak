@@ -1,0 +1,108 @@
+.building-input {
+  display: block;
+  width: 85%;
+  height: 20px;
+  padding: 5px 10px 5px 10px;
+  font-size: 12px;
+  line-height: 1;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+  -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+  -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s
+}
+
+
+.k-detail-cell .k-tabstrip .k-content {
+  padding: 0.2em;
+}
+
+
+.building-save-btn {
+  border-radius: 4px !important;
+  background-color: rgb(34, 149, 225) !important;
+  text-align: center !important;
+  text-transform: uppercase !important;
+  color: #ffffff !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 20px !important;
+  padding: 5px 10px;
+  min-width: 150px;
+  border-width: 0 !important;
+  border-style: none !important;
+  display:block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tag {
+  position: relative;
+  width: 40%;
+  float: left;
+  display: inline-block;
+  padding: 0px,10px,15px,5px;
+  text-align: left
+}
+
+.input {
+  position: relative;
+  width: 60%;
+  float: left;
+  display: inline-block;
+  padding: 0,0,0,5px;
+}
+
+.droplist {
+  position: relative;
+  width: 60%;
+  float: left;
+  display: inline-block;
+  padding: 0 0 10px 0;
+}
+
+.left {
+  position: relative;
+  width: 50%;
+  float: left;
+  display: inline-block;
+}
+
+.right {
+  position: relative;
+  width: 50%;
+  float: left;
+  display: inline-block;
+}
+
+.k-grid .k-state-selected {
+  background-color: lightblue !important;
+  color: #000000;
+}
+
+.k-grid .k-alt.k-state-selected {
+  background-color: lightblue !important;
+  color: #000000;
+}
+
+.k-grid .k-state-selected {
+  background: blue;
+}
+
+
+.k-grid {
+  font-size: 10pt;
+  font-family: 'Montserrat', sans-serif !important;
+}
+
+  .k-grid td {
+    line-height: 2em;
+  }
+
+

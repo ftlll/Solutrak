@@ -1,0 +1,107 @@
+<template>
+  <require from="aurelia-kendoui-bridge/dropdownlist/dropdownlist"></require>
+  <require from="aurelia-kendoui-bridge/dialog/dialog"></require>
+  <div>
+    <div class="left">
+      <div class="tag">
+        <label for="CostCenter" class="control-label">Cost Center:</label>
+      </div>
+      <div class="input">
+        <input type="text" value.bind="selectedData.costCenter" class="building-input" placeholder="" required><br />
+      </div>
+
+      <div class="tag">
+        <label for="Name" class="control-label">Building Name:</label>
+      </div>
+      <div class="input">
+        <input type="text" value.bind="selectedData.buildingName" class="building-input" placeholder=""><br />
+      </div>
+      <div class="tag">
+        <label for="buildingtype" class="control-label">Building Type:</label>
+      </div>
+      <div class="droplist">
+        <ak-drop-down-list k-data-text-field="name"
+                           k-data-value-field="id"
+                           k-data-source.bind="bti"
+                           k-value.two-way="buildingType">
+        </ak-drop-down-list>
+      </div>
+
+      <div class="tag">
+        <label for="TimeZone" class="control-label">Time Zone:</label>
+      </div>
+      <div class="droplist">
+        <ak-drop-down-list k-data-text-field="name"
+                           k-data-value-field="id"
+                           k-data-source.bind="wtz"
+                           k-value.two-way="WorldTimeZone">
+        </ak-drop-down-list>
+      </div>
+      <div class="tag">
+        <label for="BuildingManager" class="control-label">Building Manager:</label>
+      </div>
+      <div class="droplist">
+        <ak-drop-down-list k-data-text-field="firstName"
+                           k-data-value-field="id"
+                           k-data-source.bind="manager"
+                           k-value.two-way="buildingManagerId">
+        </ak-drop-down-list>
+      </div>
+    </div>
+    <div class="right">
+      <div class="tag">
+        <label for="Address" class="control-label">Address:</label>
+      </div>
+      <div class="input">
+        <input type="text" value.bind="selectedData.address" class="building-input" placeholder="" required="required"><br />
+      </div>
+      <div class="tag">
+        <label for="country" class="control-label">Country:</label>
+      </div>
+      <div class="droplist">
+        <ak-drop-down-list k-data-text-field="value"
+                           k-data-value-field="value"
+                           k-data-source.bind="country"
+                           k-widget.bind="country"
+                           k-on-change.delegate="changeCountry()"
+                           k-value.two-way="countryName">
+        </ak-drop-down-list>
+      </div>
+      <div class="tag">
+        <label for="province" class="control-label">Province/State:</label>
+      </div>
+      <div class="droplist">
+        <ak-drop-down-list k-cascade-from="country"
+                           k-data-text-field="name"
+                           k-data-value-field="id"
+                           k-widget.bind="province"
+                           k-data-source.bind="pi"
+                           k-value.two-way="ProvinceId">
+        </ak-drop-down-list>
+      </div>
+      <div class="tag">
+        <label for="City" class="control-label">City:</label>
+      </div>
+      <div class="input">
+        <input type="text" value.bind="selectedData.city" class="building-input" placeholder="" required="required"><br />
+      </div>
+
+      <div class="tag">
+        <label for="postalcode" class="control-label">Postal Code/ZIP:</label>
+      </div>
+      <div class="input">
+        <input type="text" value.bind="selectedData.postalCode" class="building-input" placeholder="" required="required"><br />
+      </div>
+      <div class="tag" style="display:
+               ${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }">
+        <label for="parked" class="control-label">Parked</label>
+      </div>
+      <div class="droplist" style="display:
+               ${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }">
+        <input type="checkbox" checked.bind="selectedData.parked" />
+      </div>
+    </div>
+      <button class="building-save-btn" click.delegate="editBuilding()">Update</button>
+    </div>
+
+</template>

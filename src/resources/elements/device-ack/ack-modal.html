@@ -1,0 +1,203 @@
+<template>
+  <ai-dialog class.bind="_w.eventStatus > 40 ? 'ack-emergency' : 'ack-normal'">
+    <ai-dialog-header>
+      <div>
+        <span class="mnt-medium-normal white-24p uppercase">Shutdown Alert</span>
+      </div>
+      <div>
+        <span class="mnt-medium-normal white-18p">${_device.buildingAddress}</span>
+      </div>
+      <div>
+        <span class="mnt-medium-normal white-18p">${_device.bankName} - ${_device.name}</span>
+      </div>
+    </ai-dialog-header>
+    <ai-dialog-body>
+      <require from='./../../../css/ack.css'></require>
+      <require from='./../../../css/sltrk-modal.css'></require>
+      <require from='./../../../css/sltrk-select2.css'></require>
+      //<require from='./../../../resources/elements/jquery/datepicker'></require>
+      <form class="form-horizontal" role="form">
+        <fieldset>
+          <div class="row" style="margin-top:15px; margin-bottom:54px;">
+            <div class="col-sm-12 text-center">
+              <span class="mnt-medium-normal white-24p">The system received a shutdown event from the controller:</span>
+              <br />
+              <span class="mnt-medium-normal white-24p">${_w.eventDescription}</span>
+            </div>
+          </div>
+          <div class="row" style="margin-bottom:35px;">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="building" class="control-label ai-dialog-label">Building Address</label>
+                <div>
+                  <input type="text" class="form-control ai-dialog-input fixed-width-input" disabled id="building" name="building" value.bind="_device.buildingAddress" />
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <label for="bank" class="control-label ai-dialog-label">Bank name</label>
+              <div>
+                <input type="text" class="form-control ai-dialog-input fixed-width-input" disabled id="bank" name="bank" value.bind="_device.bankName" />
+              </div>
+            </div>
+
+            <div class="col-sm-4">
+              <label for="device" class="control-label ai-dialog-label">Device name</label>
+              <div>
+                <input type="text" class="form-control ai-dialog-input fixed-width-input" disabled id="device" name="device" value.bind="_device.type + ' - ' + _device.name" />
+              </div>
+            </div>
+          </div>
+
+          <div class="row" style="margin-bottom:20px;">
+            <div class="col-sm-2 ack-separator left-s" style.bind="_w.eventStatus > 40 ? 'background-color: rgba(229, 64, 76, 1)':'background-color: rgb(74, 159, 227)'"></div>
+            <div class="col-sm-8 text-center">
+              <span class="mnt-medium-normal white-24p" style="top: -13px;position: relative;">Please select one of the following responses</span>
+            </div>
+            <div class="col-sm-2 ack-separator right-s" style.bind="_w.eventStatus > 40 ? 'background-color: rgba(229, 64, 76, 1)':'background-color: rgb(74, 159, 227)'"></div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="form-group">
+                <button type="button" class.bind="selectedTypeId == 10 ? 'ack-button-active' : ''" class="btn ack-button no-auth-control mnt-regular-normal white-16p" click.delegate="selectType(10)">Place service call</button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <button type="button" class.bind="selectedTypeId == 20 ? 'ack-button-active' : ''" class="btn ack-button no-auth-control mnt-regular-normal white-16p" click.delegate="selectType(20)">Investigate</button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <button type="button" class.bind="selectedTypeId == 30 ? 'ack-button-active' : ''" class="btn ack-button no-auth-control mnt-regular-normal white-16p" click.delegate="selectType(30)">Maintenance work</button>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="form-group">
+                <button type="button" class.bind="selectedTypeId == 40 ? 'ack-button-active' : ''" class="btn ack-button no-auth-control mnt-regular-normal white-16p" click.delegate="selectType(40)">Ignore</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" if.bind="selectedTypeId == 20">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="investigateSelect" class="control-label ai-dialog-label">Investigate option</label>
+                <div>
+                  <select2 class="fixed-width-input" name="investigateSelect"
+                           selected.bind="_m.investigatingOption & validate"
+                           options.bind="_ackInvestigatingOptions">
+                  </select2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" if.bind="selectedTypeId == 30">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="maintenanceSelect" class="control-label ai-dialog-label">Maintenance option</label>
+                <div>
+                  <select2 class="fixed-width-input" name="maintenanceSelect"
+                           selected.bind="_m.maintenanceOption & validate"
+                           options.bind="_ackMaintenanceOptions">
+                  </select2>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8">
+              <div class="row">
+                <div class="col-md-12">
+                  <span class="uppercase mnt-semi-bold-normal white-16p">Estimated Duration Of Maintenance</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="weeksDuration" class="control-label ai-dialog-label col-sm-4">Weeks</label>
+                    <div class="col-sm-8">
+                      <input class="form-control ai-dialog-input smaller-fixed-width-input"
+                             id="weeksDuration" name="weeksDuration" value.bind="_m.weeksDuration & validate" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="daysDuration" class="control-label ai-dialog-label col-sm-4">Days</label>
+                    <div class="col-sm-8">
+                      <input class="form-control ai-dialog-input smaller-fixed-width-input"
+                             id="daysDuration" name="daysDuration" value.bind="_m.daysDuration & validate" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="hoursDuration" class="control-label ai-dialog-label col-sm-4">Hours</label>
+                    <div class="col-sm-8">
+                      <input class="form-control ai-dialog-input smaller-fixed-width-input"
+                             id="hoursDuration" name="hoursDuration" value.bind="_m.hoursDuration & validate" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" if.bind="selectedTypeId == 40">
+            <div class="col-sm-4">
+              <div class="form-group">
+                <label for="ignoreSelect" class="control-label ai-dialog-label">Ignore option</label>
+                <div>
+                  <select2 class="fixed-width-input" name="ignoreSelect"
+                           selected.bind="_m.ignoringOption & validate"
+                           options.bind="_ackIgnoringOptions">
+                  </select2>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-8" if.bind="_m.ignoringOption == 20 || _m.ignoringOption == 30">
+              <div class="row">
+                <div class="col-md-12">
+                  <span class="uppercase mnt-semi-bold-normal white-16p">Estimated Duration Of Maintenance</span>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="weeksDuration" class="control-label ai-dialog-label col-sm-4">Weeks</label>
+                    <div class="col-sm-8">
+                      <input class="form-control ai-dialog-input smaller-fixed-width-input"
+                             id="weeksDuration" name="weeksDuration" value.bind="_m.weeksDuration & validate" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="daysDuration" class="control-label ai-dialog-label col-sm-4">Days</label>
+                    <div class="col-sm-8">
+                      <input class="form-control ai-dialog-input smaller-fixed-width-input"
+                             id="daysDuration" name="daysDuration" value.bind="_m.daysDuration & validate" />
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label for="hoursDuration" class="control-label ai-dialog-label col-sm-4">Hours</label>
+                    <div class="col-sm-8">
+                      <input class="form-control ai-dialog-input smaller-fixed-width-input"
+                             id="hoursDuration" name="hoursDuration" value.bind="_m.hoursDuration & validate" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </ai-dialog-body>
+    <ai-dialog-footer>
+      <button class="save-btn" click.delegate="save()">Send response </button>
+    </ai-dialog-footer>
+  </ai-dialog>
+</template>

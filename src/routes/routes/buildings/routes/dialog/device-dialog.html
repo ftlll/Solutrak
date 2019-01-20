@@ -1,0 +1,402 @@
+<template>
+  <require from="aurelia-kendoui-bridge/dropdownlist/dropdownlist"></require>
+
+    <div style="display:${(page == 1) ? '' : 'none'}">
+      <div class="device-col2">
+        <div class="device-form">
+          <label for="deviceTypeId" class="control-label">Device Type</label> <br />
+          <ak-drop-down-list k-data-text-field="name"
+                             k-data-value-field="id"
+                             k-data-source.bind="deviceTypes"
+                             k-value.two-way="deviceTypeId">
+          </ak-drop-down-list>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Designation</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.designation" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankTypeid" class="control-label">AHJ Number</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.ahjNumber" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+
+        <div class="device-form">
+          <label for="Description" class="control-label">Manufacturer</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.manufacturer" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Contract Speed</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.contractSpeed" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Year Installed</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.yearInstalled" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Year Modernized</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.yearModernized" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Sales Number</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.salesNumber" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Control Type</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.controlType" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Motor Type</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.motorType" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+      </div>
+      <div class="device-col2">
+        <div class="device-form">
+          <label for="Description" class="control-label">Motor Horse Power</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.motorHorsePower" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Motor Serial#</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.motorSerialNumber" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Capacity</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.capacity" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Floors Served</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.floorsServed" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Drive Type</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.driveType" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Drive Serial#</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.driveSerialNumber" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">Current Status</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.currentStatus" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">License Start Date</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.licenseStartDate" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">License Expiration Date</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.licenseExpirationDate" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="Description" class="control-label">License Cost$</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.licenseCost" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+      </div>
+      <button class="bank-save-btn" click.delegate="nextPage()">Next</button>
+      <button class="bank-save-btn" click.delegate="editDevice()">Update</button>
+    </div>
+    <div style="display:${(page == 2 && deviceTypeId <= 23) ? '' : 'none'}">
+      <div class="device-col3">
+        <div class="device-form">
+          <label for="bankName" class="control-label">Function</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Buffer Type</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Roping Ratio</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Type(front)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Type(Rear)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Protection(front)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Protection(rear)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Operator Type(front)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Operator Type(rear)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+      </div>
+      <div class="device-col3">
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Width(front)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Height(front)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Governors Can't be Sealead</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Width(rear)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Door Height(rear)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label"># of Openings(front)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label"># of Openings(rear)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Cap Width</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+      </div>
+      <div class="device-col3">
+        <div class="device-form">
+          <label for="bankName" class="control-label">Cap Depth</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Cap Height</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Arrival Signal</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Car Operating Panels</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Fire Service</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Communication</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Security</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">M/R Location</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <button class="bank-save-btn device-col3" click.delegate="previousPage()">Back</button>
+        <button class="bank-save-btn device-col3" click.delegate="nextPage()">Next</button>
+        <button class="bank-save-btn device-col3" click.delegate="editDevice()">Update</button>
+      </div>
+    </div>
+    <div style="display:${(page == 2 && deviceTypeId > 23) ? '' : 'none'}">
+      <div class="device-col2">
+        <div class="device-form">
+          <label for="bankName" class="control-label">Hand Rail Speed(left)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Hand Rail Speed(right)</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Hand Rail Color</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Balustrade Type</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Decking Finishes</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Anti-Friction Coat</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Step/Skirt Protection</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Step Width</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+      </div>
+      <div class="device-col2">
+        <div class="device-form">
+          <label for="bankName" class="control-label">Step Width</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Riser Height</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Riser Angle</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Slope</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Safty Demarcation</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Skirt Switch</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Combo Plate Switch</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+        <div class="device-form">
+          <label for="bankName" class="control-label">Handrail Entry Switch</label>
+          <div>
+            <input type="text" value.bind="selectedDevice.fnc" class="device-input" placeholder=""><br />
+          </div>
+        </div>
+      </div>
+
+      <button class="bank-save-btn" click.delegate="previousPage()">Back</button>
+      <button class="bank-save-btn" click.delegate="nextPage()">Next</button>
+      <button class="bank-save-btn" click.delegate="editDevice()">Update</button>
+    </div>
+</template>

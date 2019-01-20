@@ -1,0 +1,58 @@
+<template>
+  <div class="row" slot="app-content">
+    <div class="col-md-12">
+      <div class="login-box center-block">
+        <div style="margin:40px 67px 35px 67px;">
+          <div if.bind="_isOperationFailed == false">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <span class="mnt-light-normal white-24p">Forgot Password</span>
+              </div>
+            </div>
+            <div class="row" style="margin-top:10px;">
+              <div class="col-md-12 text-center">
+                <span class="mnt-regular-normal gray-14p">
+                  We can help you reset your password using email address associated with your account.
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="summary-alert alert-danger alert-dismissable" show.bind="_isOperationFailed == true">
+            <a href="#" click.trigger="reset($event)" class="close">
+              <img src="/assets/img/sltrk-close.png" alt="close">
+            </a>
+            <div class="mnt-semi-bold-normal white-18p">Oops!</div>
+            <div class="mnt-regular-normal gray-14p">
+              ${_statusMessage}
+              <br>
+              ${_statusAction}
+            </div>
+          </div>
+        </div>
+        <form id="login-form" autocomplete="off" class="form-horizontal" role="form" method="post" action="" style="margin-bottom: 57px;">
+          <div class="form-group">
+            <label for="_email" class="control-label sr-only">Email</label>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <input type="text" name="_email" id="_email" placeholder="Email"
+                       class="form-control sltrk-input no-auth-control"
+                       value.bind="_m.email & validate" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button class="btn sltrk-btn no-auth-control mnt-regular-normal white-16p"
+                      click.delegate="submit()">
+                Reset password
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="navigation text-center">
+          <a href="/#/login" class="mnt-regular-normal blue-16p">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

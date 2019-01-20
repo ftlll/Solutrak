@@ -1,0 +1,177 @@
+
+ux-dialog-container {
+  z-index: 10000 !important;
+}
+
+.select2-dropdown, .xdsoft_datetimepicker {
+  z-index: 10051 !important;
+}
+
+ai-dialog-overlay {
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  top: 0;
+  right: 0;
+  opacity: 0;
+}
+
+  ai-dialog-overlay.active {
+    opacity: 1;
+  }
+
+ai-dialog-container {
+  display: block;
+  position: fixed;
+  transition: opacity .2s linear;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  pointer-events: none;
+  -webkit-overflow-scrolling: touch;
+  outline: 0;
+  border-radius: 5%;
+}
+
+  ai-dialog-container.active {
+    opacity: 1;
+  }
+
+ai-dialog {
+  position: relative;
+  display: block;
+  min-width: 300px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  border: 4px solid #4a9fe3;
+  border-radius: 4px;
+  padding: 0;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  margin: auto;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+  background: white;
+  pointer-events: auto;
+}
+
+  ai-dialog > ai-dialog-header {
+    display: block;
+    padding: 16px 30px 16px 30px;
+    background-color: rgb(74, 159, 227);
+  }
+
+    ai-dialog > ai-dialog-header > span {
+      font-size: 24px;
+      text-transform: uppercase;
+    }
+
+    ai-dialog > ai-dialog-header > .close-icon {
+      float: right;
+      border: none;
+      background: none;
+      position: relative;
+      top: 6px;
+      margin: 0;
+      padding: 0;
+      cursor: pointer;
+    }
+
+  ai-dialog > ai-dialog-body {
+    display: block;
+    padding: 15px 30px 15px 30px;
+    background-color: rgb(58, 62, 82);
+  }
+
+  ai-dialog > ai-dialog-footer {
+    display: block;
+    padding: 6px;
+    text-align: center;
+    background-color: rgb(58, 62, 82);
+    padding-bottom: 20px;
+  }
+
+    ai-dialog > ai-dialog-footer .save-btn {
+      border-radius: 4px !important;
+      background-color: rgb(34, 149, 225) !important;
+      text-align: center !important;
+      text-transform: uppercase !important;
+      color: #ffffff !important;
+      font-family: 'Montserrat', sans-serif !important;
+      font-weight: 500 !important;
+      font-style: normal !important;
+      font-size: 20px !important;
+      padding: 5px 10px;
+      min-width: 150px;
+      border-width: 0 !important;
+      border-style: none !important;
+    }
+
+
+.ai-dialog-open {
+  overflow: hidden;
+}
+
+.ai-dialog-close {
+  position: relative;
+}
+
+  .ai-dialog-close img {
+    position: relative;
+    right: 30px;
+    text-align: center;
+  }
+
+.ai-dialog-label {
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 500 !important;
+  font-style: normal !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+}
+
+.ai-dialog-input {
+  color: #333333 !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 700 !important;
+  font-style: normal !important;
+  font-size: 16px !important;
+  background-color: #ffffff !important;
+  border-radius: 2px !important;
+  padding: 5px 10px !important;
+  text-align: left !important;
+}
+
+.validation-wrapper {
+  padding: 0 !important;
+}
+
+.help-block {
+  margin-bottom: 0px !important;
+}
+
+fieldset.repairLegend {
+  border: 2px groove #FFFFFF !important;
+  padding: 0 1.4em 1.4em 1.4em !important;
+  margin: 0 0 1.5em 0 !important;
+  -webkit-box-shadow: 0px 0px 0px 0px #FFFFFF;
+  box-shadow: 0px 0px 0px 0px #FFFFFF;
+}
+
+legend.repairLegend {
+  text-align: left !important;
+  width: auto;
+  padding: 0 10px;
+  border-bottom: none;
+}

@@ -1,0 +1,55 @@
+<template>
+  <require from="aurelia-kendoui-bridge/chart/chart"></require>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/common/template"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/grid/grid-command"></require>
+
+  <require from="./setting.css"></require>
+  <require from='./../../css/table.css'></require>
+
+  <div class="auth-section">
+    <!--<div class="pill-nav">
+      <button class="tap ${(Grid == 1)?'active':''}" click.delegate="Set(1)">Utility<br /> Info</button>
+      <button class="tap ${(Grid == 2)?'active':''}" click.delegate="Set(2)">Core KPI Info</button>
+      <button class="tap ${(Grid == 3)?'active':''}" click.delegate="Set(3)">Call Codes</button>
+      <button class="tap ${(Grid == 4)?'active':''}" click.delegate="Set(4)">Parts/Pricing</button>
+      <button class="tap ${(Grid == 5)?'active':''}" click.delegate="Set(5)">Government Mandated Requirement</button>
+      <button class="tap ${(Grid == 6)?'active':''}" click.delegate="Set(6)">Group Access Policy</button>
+    </div>-->
+    <div class="info-grid" style="display: ${(Grid == 1) ? '' : 'none'}">
+      <div class="table-card">
+        <div class="row">
+          <div class="table-card-header">
+            <div class="col-xs-12">
+              <h3 class="white-26p mnt-regular-normal pull-left">Utility Info</h3>
+              <a class="btn btn-primary create-btn mnt-regular-normal" click.delegate="save()">SAVE</a>
+            </div>
+          </div>
+        </div>
+        <ak-grid k-data-source.bind="utility"
+                 k-editable.bind="true">
+          <ak-col k-field="itemName" k-title="Item" k-width.bind="120"></ak-col>
+          <ak-col k-field="itemValue" k-title="Value" k-width.bind="120"></ak-col>
+          <ak-col k-field="itemDescription" k-title="Description" k-width.bind="120"></ak-col>
+        </ak-grid>
+      </div>
+    </div>
+    <div class="info-grid" style="display: ${(Grid == 2) ? '' : 'none'}">
+      content 2
+    </div>
+    <div class="info-grid" style="display: ${(Grid == 3) ? '' : 'none'}">
+      content 3
+    </div>
+    <div class="info-grid" style="display: ${(Grid == 4) ? '' : 'none'}">
+      content 4
+    </div>
+    <div class="info-grid" style="display: ${(Grid == 5) ? '' : 'none'}">
+      content 5
+    </div>
+    <div class="info-grid" style="display: ${(Grid == 6) ? '' : 'none'}">
+      content 6
+    </div>
+  </div>
+
+</template>

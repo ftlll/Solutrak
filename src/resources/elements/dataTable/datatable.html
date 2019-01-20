@@ -1,0 +1,134 @@
+<template>
+    <require from="./columns-filter"></require>
+    <require from="./convert-manager"></require>
+
+    <!-- Search bar -->
+    <div if.bind="searchable !== null" class="row">
+        <div class="col-xs-2">
+            <select value.bind="searchColumn" class="form-control" id="columnSelect">
+                <option model.bind="columnLabel.column"
+                        repeat.for="columnLabel of columnLabels | columnsFilter"
+                        t="${columnLabel.label}">
+                    ${columnLabel.label}
+                </option>
+            </select>
+        </div>
+
+        <div class="col-xs-10">
+            <input class="form-control"
+                   type="text"
+                   id="search"
+                   t="[placeholder]Search"
+                   placeholder="Search"
+                   value.bind="search">
+        </div>
+        <br />
+    </div>
+
+    <!--<div show.bind="pages > 1" class="datatable-pager">
+        <pager if.bind="!offlineMode"
+               resource.bind="repository"
+               criteria.bind="criteria.where"
+               page.bind="page"
+               pages.two-way="pages"
+               view-model.ref="pager"
+               limit.bind="limit"></pager>
+        <pager if.bind="offlineMode" class="pull-right"
+               page.bind="page"
+               pages.two-way="pages"
+               view-model.ref="pager"
+               limit.bind="limit"></pager>
+    </div>-->
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th if.bind="detailView" style="width: 50px;"></th>
+
+                <!-- Labels -->
+                <th click.delegate="doSort(columnLabel)" repeat.for="columnLabel of columnLabels">
+                    <!-- Just show the label -->
+                    <span if.bind="sortable === null || columnLabel.nested" t="${columnLabel.label}">${columnLabel.label}</span>
+
+                    <!-- Show label and make it sortable (click) -->
+                    <a if.bind="sortable !== null && !columnLabel.nested">
+                        <span t="${columnLabel.label}">${columnLabel.label}</span>
+                        <i class="datatable-sort-icon zmdi zmdi-hc-lg zmdi-${criteria.sort[columnLabel.column] ? (criteria.sort[columnLabel.column] === 'desc' ? 'chevron-down' : 'chevron-up') : 'chevron-down icon-gray'}">
+                        </i>
+                    </a>
+                </th>
+
+                <!-- Actions -->
+                <th show.bind="showActions() && hasVisibleActions">
+                    <button repeat.for="action of headerActions"
+                            class="header-action-btn ${action.type}" click.trigger="doCustomAction(action)">
+                        <i if.bind="action.icon" class="zmdi zmdi-hc-lg ${action.icon}"></i>
+                        <span t="${action.title}">${action.title}</span>
+                    </button>
+                </th>
+            </tr>
+        </thead>
+        <tbody if.bind="loadingIndicator && loading">
+            <tr>
+                <td colspan.bind="colspan" innerhtml.bind="loadingIndicator"></td>
+            </tr>
+        </tbody>
+        <tbody repeat.for="row of data">
+            <tr if.bind="!loading">
+                <td style="text-align: center;" if.bind="detailView" click.delegate="collapseRow(row)"><i class="fa fa-${row._collapsed ? 'chevron-down' : 'chevron-right'}"></i></td>
+
+                <!-- Columns -->
+                <!--<td repeat.for="columnLabel of columnLabels">
+                    <span if.bind="!columnLabel.route && !route && !select"
+                          innerhtml.bind="(row === null || row[columnLabel.column] === null) ? '' : row | convertManager: columnLabel.column : columnLabel.converter : row"></span>
+                    <a if.bind="route || select || columnLabel.route" click.delegate="selected(row, columnLabel)"
+                       innerhtml.bind="(row === null || row[columnLabel.column] === null) ? '' : row | convertManager: columnLabel.column : columnLabel.converter : row"></a>
+                </td>-->
+
+              <td>
+                <span>${row[columnLabels[0].column]}</span>
+              </td>
+                <!-- Actions -->
+                <td style="white-space: nowrap; width: 1px;" show.bind="showActions() && hasVisibleActions">
+                    <button if.bind="edit !== null" class="action-btn" click.delegate="doEdit(row, $index)">
+                        <i class="zmdi zmdi-hc-lg zmdi-eye"></i><span> View</span>
+                    </button>
+                    <button if.bind="destroy !== null" class="action-btn" click.delegate="doDestroy(row, $index)">
+                        <i class="fa fa-trash"></i>
+                    </button>
+                    <template repeat.for="action of actions">
+                        <button if.bind="checkVisibility(action, row)" t="[title]${action.title}"
+                                title.bind="action.title || ''" disabled.bind="checkDisabled(action, row)" class="action-btn" click.trigger="doCustomAction(action, row, $parent.$index)">
+                            <i if.bind="action.icon" class="zmdi zmdi-hc-lg ${action.icon}"></i>
+                            <span t="${action.title}">${action.title}</span>
+                        </button>
+                    </template>
+                </td>
+            </tr>
+
+            <!-- Needed for table-striped -->
+            <tr if.bind="detailView && row._collapsed" style="display: none;"></tr>
+
+            <tr if.bind="detailView && row._collapsed">
+                <td colspan.bind="colspan" style="padding: 0; margin: 0;">
+                    <compose view-model.bind="detailView" model.bind="row"></compose>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot if.bind="footer" innerhtml.bind="footer"></tfoot>
+    </table>
+    <!--<div show.bind="pages > 1" class="datatable-pager">
+        <pager if.bind="!offlineMode"
+               resource.bind="repository"
+               criteria.bind="criteria.where"
+               page.bind="page"
+               pages.two-way="pages"
+               view-model.ref="pager"
+               limit.bind="limit"></pager>
+        <pager if.bind="offlineMode" class="pull-right"
+               page.bind="page"
+               pages.two-way="pages"
+               view-model.ref="pager"
+               limit.bind="limit"></pager>
+    </div>-->
+</template>

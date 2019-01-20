@@ -1,0 +1,138 @@
+body {
+    background: #2A2C3B!important;
+}
+
+.auth-header {
+    background-color: rgba(54, 75, 104, 1);
+    padding: 0 0 0 40px;
+}
+
+.auth-header .logo {
+    padding: 27px 0 21px 0;
+}
+
+.auth-header .sltrk-menu {
+    text-align: right;
+    margin: 0 30px 0 0 !important;
+}
+
+.auth-header .sltrk-menu > li {
+    padding: 0 30px 0 20px;
+    line-height: 91px;
+}
+
+.auth-header .sltrk-menu > li:last-child {
+    padding: 0 10px 0 20px;
+}
+
+.sltrk-menu li a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.auth-content {
+    /*height: 100%;*/
+    background-color: rgba(42, 44, 59, 1);
+    position: absolute;
+    top: 73px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+.auth-section-wrapper {
+    padding: 15px 50px;
+    position: relative;
+    height: 100%;
+    margin-left: 111px;
+}
+
+.auth-section {
+    padding: 60px;
+}
+
+.profile-section {
+  padding: 100px 0 0 120px;
+}
+
+.sltrk-profile-img {
+    height: 56px;
+    width: 56px;
+    background-color: rgba(36, 32, 61, 1);
+    border-radius: 56px;
+}
+
+#sltrk-cntxt-menu {
+    left: inherit !important;
+    right: 45px;
+    background-color: #191A23 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    margin: 0 auto !important;
+}
+
+#sltrk-cntxt-menu li .separator {
+    background-image: url(../../dist/assets/img/cntxt-menu-separator.png);
+    background-repeat: repeat-y;
+    height: 2px;
+    width: 160px;
+    position: absolute;
+    right: 0px;
+}
+
+#sltrk-cntxt-menu li {
+
+}
+
+#sltrk-cntxt-menu li a {
+    cursor: pointer;
+    padding: 19px 22px 19px 22px;
+}
+
+#sltrk-cntxt-menu > li > a:focus, #sltrk-cntxt-menu > li > a:hover {
+    color: #ffffff !important;
+    text-decoration: none;
+    background-color: #191A23 !important;
+}
+
+#sltrk-cntxt-menu li a span {
+    margin-left: 20px;
+    position: relative;
+    top: 3px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+
+
+#page-content-wrapper {
+    background: #2A2C3B;
+}
+
+.input-daterange input {
+    background: #364b68;
+    border-color: #5b7dab;
+    color: white;
+}
+
+.input-daterange .input-group-addon {
+    color: #fff;
+    background-color: #5677a5;
+    border: 1px solid #5b7dab;
+}
+
+.text-fill-adjust { width: 100px; }
+
+
+

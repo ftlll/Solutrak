@@ -1,0 +1,64 @@
+<template>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/common/template"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/grid/grid-command"></require>
+  <require from="aurelia-kendoui-bridge/dropdownlist/dropdownlist"></require>
+
+  <require from="./workItems.css"></require>
+  <div class="auth-section row">
+    <div class="col-md-3">
+      <div class="search">
+        <input type="text" class="callback-input" />
+        <a class="btn btn-primary mnt-regular-normal">SEARCH</a>
+      </div>
+      <ak-grid k-data-source.bind="buildings"
+               k-no-init.bind="true"
+               view-model.ref="myGrid"
+               k-selectable="row"
+               k-on-change.delegate="rowSelected($event.detail)">
+        <ak-col k-title="Name" k-field="buildingName"></ak-col>
+      </ak-grid>
+    </div>
+    <div class="col-md-9">
+      <div class="action">
+        <div class="search-rules">
+          <div class="col-sm-12 search-row">
+            <span class="mnt-semi-bold-normal white-20p">Activity Type:</span>
+            <ak-drop-down-list k-data-text-field="name"
+                               k-data-value-field="id"
+                               k-data-source.bind="wtz"
+                               k-value.two-way="WorldTimeZone">
+            </ak-drop-down-list>
+          </div>
+          <div class="col-sm-6 search-row">
+            <span class="mnt-semi-bold-normal white-20p">From:</span>
+            <input class="callback-input" type="date">
+          </div>
+          <div class="col-sm-6 search-row">
+            <span class="mnt-semi-bold-normal white-20p">To:</span>
+            <input class="callback-input" type="date">
+          </div>
+          <div class="col-sm-10 search-row">
+            <span class="mnt-semi-bold-normal white-20p">Key Word:</span>
+            <input class="callback-input" type="text">
+            <a class="btn btn-primary mnt-regular-normal">SEARCH</a>
+          </div>
+          <div class="col-sm-2 search-row">
+            <a class="btn btn-primary mnt-regular-normal white-16p">Add activity</a>
+          </div>
+        </div>
+        <!--<ak-grid k-data-source.bind="buildings"
+                 k-no-init.bind="true"
+                 view-model.ref="myGrid"
+                 k-selectable="row"
+                 k-on-change.delegate="rowSelected($event.detail)">
+          <ak-col k-title="Name" k-field="buildingName"></ak-col>
+          <ak-col k-title="Name" k-field="buildingName"></ak-col>
+          <ak-col k-title="Name" k-field="buildingName"></ak-col>
+        </ak-grid>-->
+
+      </div>
+    </div>
+  </div>
+</template>

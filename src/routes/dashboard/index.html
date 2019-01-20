@@ -1,0 +1,70 @@
+﻿<template>
+  <require from="aurelia-kendoui-bridge/chart/chart"></require>
+  <require from="aurelia-kendoui-bridge/splitter/splitter"></require>
+  <require from="./dashboard.css"></require>
+  <require from="./chart-layout/callbackRatio/callback-ratio"></require>
+  <require from="./chart-layout/Entrapment/entrapment"></require>
+  <require from="./chart-layout/CallbackTrends/callback-trends"></require>
+  <!--<require from="./chart-layout/callbackNumber/callbackNumber"></require>-->
+
+  <div class="auth-section">
+    <div class="sliders">
+      <div class="item">
+        <div class.bind="two" click.delegate="setPage(2)">
+          <div class='caption mnt-regular-normal white-14p'>Callback Ratio</div>
+          <ak-chart k-data-source.bind="callbackRatio"
+                    k-legend.bind="{ visible: false }"
+                    k-series-defaults.bind="{type: 'bar'}"
+                    k-series.bind="series"
+                    k-value-axis.bind="valueAxis"
+                    k-theme="MaterialBlack"
+                    style="width: 100%; height: auto">
+          </ak-chart>
+        </div>
+      </div>
+      <div class="item">
+        <div class.bind="three" click.delegate="setPage(3)">
+          <div class='caption mnt-regular-normal white-14p'>Callback Trends</div>
+          <ak-chart style="width: 100%; height:auto"></ak-chart>
+        </div>
+      </div>
+      <div class="item">
+        <div class.bind="four" click.delegate="setPage(4)">
+          <div class='caption mnt-regular-normal white-14p'>Callback Number</div>
+          <ak-chart style="width: 100%; height:auto"></ak-chart>
+        </div>
+      </div>
+      <div class="item">
+        <div class.bind="five" click.delegate="setPage(0)">
+          <div class='caption mnt-regular-normal white-14p'>Entrapment</div>
+          <ak-chart style="width: 100%; height:auto"></ak-chart>
+        </div>
+      </div>
+      <div class="item">
+        <div class.bind="one" click.delegate="setPage(1)">
+          <div class='caption mnt-regular-normal white-14p'>Building Score</div>
+          <ak-chart style="width: 100%; height:auto"></ak-chart>
+        </div>
+      </div>
+      <a class="next1" click.delegate="nextChart()">&#10095;</a>
+      <a class="prev" click.delegate="prevChart()">&#10094;</a>
+    </div>
+
+    <div class="charts" style="display: ${(currentChart == 2)? '':'none'}">
+      <callback-ratio></callback-ratio>
+    </div>
+    <div class="charts" style="display: ${(currentChart == 3)? '':'none'}">
+      <callback-trends></callback-trends>
+    </div>
+    <div class="charts" style="display: ${(currentChart == 4)? '':'none'}">
+      <callback-trends></callback-trends>
+    </div>
+    <div class="charts" style="display: ${(currentChart == 0)? '':'none'}">
+      <entrapment></entrapment>
+    </div>
+
+    <!--<div class="charts" style="display: ${(currentChart == 1)? '':'none'}">
+    <callback-number></callback-number>
+  </div>-->
+  </div>
+</template>

@@ -1,0 +1,36 @@
+<template>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/datetimepicker/datetimepicker"></require>
+
+  <ak-grid k-data-source.bind="datasource"
+           k-pageable.bind="{ input: true, numeric: false}"
+           k-filterable.bind="true"
+           k-sortable.bind="true"
+           k-scrollable.bind="true"
+           k-editable="inline">
+    <ak-col k-title="ProductName" k-field="ProductName"></ak-col>
+    <ak-col k-title="Unit Price" k-field="UnitPrice" k-format="{0:c}" k-width="130px"></ak-col>
+    <ak-col k-title="Units In Stock" k-field="UnitsInStock" k-width="130px"></ak-col>
+    <ak-col k-field="Discontinued" k-width="130px"></ak-col>
+    <ak-col k-field="Date" k-width="130px" k-format="{0:yyyy-MM-dd HH:mm}" k-editor.bind="dateTimeEditor"></ak-col>
+    <ak-col k-command.bind="['edit', 'destroy']" k-title="&nbsp;" width="150px"></ak-col>
+  </ak-grid>
+</template>
+<!--<ak-grid k-data-source.bind="Gridcallbacks"
+         k-pageable.bind="{ input: true, numeric: false}"
+         k-sortable.bind="true"
+         k-editable="inline"
+         k-no-init.bind="true"
+         view-model.ref="callbacksGrid"
+         k-selectable="row"
+         k-width="700px"
+         k-on-change.delegate="callbackSelected($event.detail)">
+  <ak-col k-title="Date & Time Recorded" k-field="date" k-validation="required"></ak-col>
+  <ak-col k-title="Device Naming" k-field="deviceNaming"></ak-col>
+  <ak-col k-title="Device Status" k-field="deviceStatus"></ak-col>
+  <ak-col k-title="Description" k-width="200px" k-field="description"></ak-col>
+  <ak-col k-title="Callback Status" k-field="callbackStatus"></ak-col>
+  <ak-col k-title="Contractor" k-field="contractor"></ak-col>
+  <ak-col k-command.bind="['edit', 'destroy']" k-title="&nbsp;" width="250px"></ak-col>
+</ak-grid>-->

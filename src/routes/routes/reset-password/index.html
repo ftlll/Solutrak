@@ -1,0 +1,57 @@
+
+<template>
+  <div class="row" slot="app-content">
+    <div class="col-md-12">
+      <div class="login-box center-block">
+        <div style="margin:0 67px;">
+          <div class="row" if.bind="_isOperationFailed == false">
+            <div class="col-md-12 text-center" style="margin: 30px 0 45px 0;">
+              <span class="mnt-light-normal white-24p">Reset Password</span>
+            </div>
+          </div>
+          <div class="summary-alert alert-danger alert-dismissable" show.bind="_isOperationFailed == true" style="margin:20px 0;">
+            <a href="#" click.trigger="reset($event)" class="close">
+              <img src="/client/dist/assets/img/sltrk-close.png" alt="close">
+            </a>
+            <div class="mnt-semi-bold-normal white-18p">Oops!</div>
+            <div class="mnt-regular-normal gray-14p">
+              ${_statusMessage}
+              <br>
+              ${_statusAction}
+            </div>
+          </div>
+        </div>
+        <form id="login-form" autocomplete="off" class="form-horizontal" role="form" method="post" action="" style="margin-bottom: 30px !important;">
+          <div class="form-group">
+            <label for="_password" class="control-label sr-only">New password</label>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <input type="password" name="_password" id="_password" placeholder="New password"
+                       class="form-control sltrk-input no-auth-control" value.bind="_m.newPassword & validate" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="_confirmpassword" class="control-label sr-only">Confirm new password</label>
+            <div class="col-sm-12">
+              <div class="input-group">
+                <input type="password" name="_confirmpassword" id="_confirmpassword" placeholder="Confirm new password"
+                       class="form-control sltrk-input no-auth-control" value.bind="_m.confirmPassword & validate" autocomplete="off">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button class="btn sltrk-btn no-auth-control mnt-regular-normal white-16p" click.delegate="submit()">
+                Submit
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="navigation text-center">
+          <a href="/#login" class="mnt-regular-normal blue-16p">Login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

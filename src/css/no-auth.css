@@ -1,0 +1,115 @@
+.no-auth-wrapper {
+  width: 100%;
+  background-color: rgb(43, 45, 60);
+  background-image: url('http://solutrack-client.cloudapp.net/client/dist/assets/img/no-auth-bg.png');
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+  .no-auth-wrapper:after {
+    padding-top: 56.25%;
+    /* 16:9 ratio */
+    display: block;
+    content: '';
+  }
+
+body {
+  background: #2A2C3B;
+}
+
+.no-auth-box {
+  position: absolute;
+  top: 25%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: 441px;
+  background-color: rgba(43, 45, 60, 1);
+  border: 1px solid rgba(85, 87, 99, 1);
+  border-radius: 6px;
+  padding-top: 62px;
+}
+
+.no-auth-logo {
+  height: 43px;
+}
+
+  .no-auth-logo a {
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.no-auth-control {
+  width: 307px !important;
+}
+
+.no-auth-box form {
+  margin: 0 67px;
+}
+
+.rememberMe {
+  margin-bottom: 5px;
+}
+
+  .rememberMe .text {
+    position: relative;
+    top: -2px;
+    left: 4px;
+  }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: none !important;
+  -webkit-text-fill-color: inherit !important;
+  -webkit-box-shadow: 0 0 0px 1000px rgba(58, 62, 82, 1) inset;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.login-box {
+  position: relative;
+}
+
+  .login-box .navigation {
+    background-color: rgba(58, 62, 82, 1);
+    left: 0;
+    right: 0;
+    padding: 10px 0;
+    bottom: -68px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+  }
+
+    .login-box .navigation a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+.summary-alert {
+  background-color: rgba(43, 45, 60, 1);
+  border: 1px solid rgba(219, 70, 70, 1);
+  border-radius: 4px;
+  border-left-width: 4px;
+  top: 12px;
+  width: 306px;
+  padding: 10px 0px 10px 10px;
+}
+
+  .summary-alert a img {
+    position: relative;
+    top: -6px;
+    right: 30px;
+  }
+
+.help-block {
+  margin-bottom: 0 !important;
+}
+
+

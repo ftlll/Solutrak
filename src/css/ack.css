@@ -1,0 +1,77 @@
+ai-dialog {
+  width: 1024px;
+}
+
+.fixed-width-input {
+  width: 307px !important;
+}
+
+.smaller-fixed-width-input {
+  width: 80px !important;
+}
+
+.fixed-width-textarea {
+  width: 418px !important;
+  height: 168px !important;
+}
+
+.select2-container {
+  width: 307px !important;
+}
+
+.ack-emergency {
+  border: 4px solid rgba(229, 64, 76, 1) !important;
+}
+
+  .ack-emergency > ai-dialog-header {
+    background-color: rgba(229, 64, 76, 1) !important;
+  }
+
+.ack-normal {
+  border: 4px solid #4a9fe3 !important;
+}
+
+  .ack-normal > ai-dialog-header {
+    background-color: rgb(74, 159, 227) !important;
+  }
+
+.ack-separator {
+  height: 4px;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  position: relative;
+}
+
+.left-s {
+  left: -15px;
+}
+
+.right-s {
+  right: -15px;
+}
+
+.ack-button {
+  background-color: transparent;
+  border-color: rgb(32, 45, 62);
+  border-radius: 4px;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 16px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1) !important;
+  text-align: center;
+  padding: 6px 0 !important;
+  width: 200px !important;
+  text-transform: uppercase;
+}
+
+  .ack-button:hover {
+    background-color: rgba(32, 45, 62, 1) !important;
+    border: 2px solid rgba(34, 149, 225, 1) !important;
+  }
+
+.ack-button-active {
+  background-color: rgba(32, 45, 62, 1) !important;
+  border: 2px solid rgba(34, 149, 225, 1) !important;
+}
+
+

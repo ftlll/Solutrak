@@ -1,0 +1,58 @@
+<template>
+  <require from='./../../css/profile.css'></require>
+  <require from='./../../css/site.css'></require>
+  <div class="profile-section row">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-8 profile-wrapper left" style="min-width:320px; margin-bottom: 30px">
+          <div class="profile-row">
+            <span class="mnt-medium-normal white-24p uppercase">Profile</span>
+          </div>
+          <div class="profile-separator"></div>
+          <div class="profile-row">
+            <span class="mnt-regular-normal white-10pt">First Name: ${_di.m.firstName}</span>
+          </div>
+          <div class="profile-separator"></div>
+          <div class="profile-row">
+            <span class="mnt-regular-normal white-10pt">Last Name: ${_di.m.lastName}</span>
+          </div>
+          <div class="profile-separator"></div>
+          <div class="profile-row">
+            <span class="mnt-regular-normal white-16p">Phone Number: ${_di.m.phoneNumber}</span>
+          </div>
+          <div class="profile-separator"></div>
+          <div class="profile-row">
+            <span class="mnt-regular-normal white-16p">Mobile: ${_di.m.mobileNumber}</span>
+          </div>
+          <div class="profile-separator"></div>
+          <div class="profile-row">
+            <button type="button" class="btn sltrk-btn mnt-semi-bold-normal white-16p" click.delegate="editProfile()">Edit Profile</button>
+            <button style="margin-left:40px;" type="button" class="btn sltrk-btn mnt-semi-bold-normal white-16p" click.delegate="changePassword()">Change Password</button>
+          </div>
+        </div>
+
+        <div class="col-sm-4 profile-wrapper right" style="min-width:420px;">
+          <div style="margin-top:40px;" class="text-center">
+            <span class="mnt-medium-normal white-24p uppercase">Profile Picture</span>
+          </div>
+          <div style="margin-top:70px;" class="text-center">
+            <img class="profile-image" id="profileImg" alt="profile" />
+            <!--<img class="profile-image" id="profileImg" alt="profile" src="/assets/img/0.png" />-->
+          </div>
+          <div style="margin-top:85px;" class="text-center">
+            <form submit.delegate="doUploadImage()" class="fileUpload">
+              <div show.bind="selectedFiles == null" class="btn sltrk-btn mnt-semi-bold-normal white-16p" style="width:205px !important;">
+                <span class="uppercase">Change Picture</span>
+                <input id="files" type="file" accept=".png,.jpg,.jpeg" files.bind="selectedFiles" class="form-control upload">
+              </div>
+              <div if.bind="selectedFiles.length == 1">
+                <input type="submit" style="width:185px !important;" class="btn sltrk-btn mnt-semi-bold-normal white-16p uppercase " value="Save" />
+                <a style="cursor:pointer; margin-left:40px; text-decoration:none; width:75px !important;" class="btn sltrk-btn mnt-semi-bold-normal white-16p " click.delegate="cancelUpload()">Cancel</a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

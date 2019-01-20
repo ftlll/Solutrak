@@ -1,0 +1,301 @@
+<template>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/common/template"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/grid/grid-command"></require>
+  <require from="aurelia-kendoui-bridge/dialog/dialog"></require>
+  <require from="aurelia-kendoui-bridge/dropdownlist/dropdownlist"></require>
+  <require from="aurelia-kendoui-bridge/window/window"></require>
+
+  <require from="./callback.css"></require>
+  <div class="auth-section row">
+    <div class="col-md-3">
+      <div class="search">
+        <input type="text" class="callback-input" />
+        <a class="btn btn-primary mnt-regular-normal">SEARCH</a>
+      </div>
+      <div class="building-grid">
+        <ak-grid k-data-source.bind="buildings"
+                 k-no-init.bind="true"
+                 view-model.ref="myGrid"
+                 k-selectable="row"
+                 k-on-change.delegate="rowSelected($event.detail)">
+          <ak-col k-title="Name" k-field="buildingName"></ak-col>
+        </ak-grid>
+      </div>
+    </div>
+    <div class="col-md-9 ">
+      <div class="action">
+
+        <div class="col-sm-6 search-row">
+          <span class="mnt-semi-bold-normal white-20p">From:</span>
+          <input class="callback-input" type="date" value.bind="beginningDate">
+        </div>
+        <div class="col-sm-6 search-row">
+          <span class="mnt-semi-bold-normal white-20p">To:</span>
+          <input class="callback-input" type="date" value.bind="endingDate">
+        </div>
+        <div class="col-sm-10 search-row">
+          <span class="mnt-semi-bold-normal white-20p">Status:</span>
+          <ak-drop-down-list k-data-text-field="name"
+                             k-data-value-field="id"
+                             k-data-source.bind="ps"
+                             k-value.two-way="callbackStatus">
+          </ak-drop-down-list>
+        </div>
+        <div class="col-sm-2 search-row">
+          <a class="btn btn-primary mnt-regular-normal white-16p">Notification</a>
+        </div>
+        <div class="col-sm-10 search-row">
+          <span class="mnt-semi-bold-normal white-20p">Key Word:</span>
+          <input class="callback-input" type="text" value.bind="keyword">
+          <a class="btn btn-primary mnt-regular-normal" click.delegate="showDate()">SEARCH</a>
+        </div>
+        <div class="col-sm-2 search-row">
+          <a class="btn btn-primary mnt-regular-normal white-16p" click.delegate ="createCallback()">Create Callback</a>
+        </div>
+        <div class="col-sm-12">
+          <ak-grid k-data-source.bind="Gridcallbacks"
+                   k-pageable.bind="{ input: true, numeric: false}"
+                   k-sortable.bind="true"
+                   k-scrollable.bind="true"
+                   k-no-init.bind="true"
+                   view-model.ref="callbacksGrid"
+                   k-selectable="row"
+                   k-width ="700px"
+                   k-on-change.delegate="callbackSelected($event.detail)">
+            <ak-col k-title="Date & Time Recorded" k-field="date"></ak-col>
+            <ak-col k-title="Device Naming" k-field="deviceNaming"></ak-col>
+            <ak-col k-title="Device Status" k-field="deviceStatus"></ak-col>
+            <ak-col k-title="Description" k-width="200px" k-field="description"></ak-col>
+            <ak-col k-title="Callback Status" k-field="callbackStatus"></ak-col>
+            <ak-col k-title="Contractor" k-field="contractor"></ak-col>
+            <ak-col k-title="Action" k-width="80px">
+              <ak-template>
+                <span click.delegate="editSelected(this)" class="k-button hide-on-narrow">Edit</span>
+                <span class="k-button hide-on-narrow" style="display:
+             ${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }"
+                      click.delegate="update(this)">Delete</span>
+                <span class="k-button hide-on-narrow" style="display:
+             ${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }"
+                      click.delegate="clone()">Clone</span>
+              </ak-template>
+            </ak-col>
+          </ak-grid>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="dialog"
+       ak-dialog="k-widget.bind: dialog;
+                      k-width: 1000px;
+                      k-title: Update Building;
+                      k-visible.bind: false;
+                      k-closable.bind: true;
+                      k-modal.bind: false;">
+    <div style="width:100%; height:500px; overflow:scroll;">
+      <div class="info-left">
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Device:</label>
+          </div>
+          <div class="droplist" style="width: 110px; display:inline-block">
+            <ak-drop-down-list k-data-text-field="designation + ahjNumber"
+                               k-data-value-field="id"
+                               k-data-source.bind="deviceType"
+                               k-value.two-way="this.selectedCallback.associatedDeviceId"
+                               style="width: 110px;">
+            </ak-drop-down-list>
+          </div>
+          <div style="display:inline-block; width: 120px; padding-left:15px">
+            <a class="btn btn-primary">Show Open Issue(s)</a>
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Callback Date:</label>
+          </div>
+          <div class="info-content">
+            <input type="date" value.bind="selectedDetails.scheduledDate" class="callback-dialog-input" placeholder="" />
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Reporter:</label>
+          </div>
+          <div class="info-content">
+            <input type="text" class="callback-dialog-input" value.bind="selectedDetails.reporter" placeholder="" />
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Entrapment:</label>
+          </div>
+          <div style="width: 120px; display:inline-block">
+            <input type="checkbox" checked.bind="selectedDetails.entrapment" />
+          </div>
+          <div style="width:120px; display:inline-block">
+            <label class="control-label">Car is Shutdown:</label>
+          </div>
+          <div style="width:20px; display:inline-block">
+            <input type="checkbox" />
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Emergency Type:</label>
+          </div>
+          <div class="droplist" style="width: 200px; display:inline-block">
+            <ak-drop-down-list k-data-text-field="name"
+                               k-data-value-field="id"
+                               k-data-source.bind="callbackUrgencyTypes"
+                               k-value.two-way="selectedDetails.urgencyType"
+                               style="width: 200px;">
+            </ak-drop-down-list>
+          </div>
+        </div>
+        <div class="callback-dialog-textarea-row">
+          <div class="info-tag" style="height: 60px">
+            <label class="control-label">Reported Problem:</label>
+          </div>
+          <div class="info-content">
+            <textarea class="callback-dialog-input" style="height: 100px" value.bind="selectedDetails.objective" ></textarea>
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">WorkOrder No:</label>
+          </div>
+          <div class="info-content">
+            <input type="text" class="callback-dialog-input" /><br />
+          </div>
+          <!--<button class="building-save-btn" click.delegate="updateCallback()">Update</button>-->
+          <div class="dispatch">
+            <div id="example">
+              <ak-grid k-pageable.bind="true" k-height.bind="200"k-editable.bind="true" k-data-source.bind="dispatch">
+                <ak-col k-field="dispatchTime" k-title="Dispatch Time" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+                <ak-col k-field="arrivalTime" k-title="Arrival Time" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+                <ak-col k-command="destroy" k-title=" " k-width="150px"></ak-col>
+              </ak-grid>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="info-right">
+        <div class="callback-dialog-row">
+          <label class="control-label">Repair Status:</label>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Status:</label>
+          </div>
+          <div class="droplist" style="width: 220px; display:inline-block">
+              <ak-drop-down-list k-data-text-field="name"
+                     k-data-value-field="id"
+                     k-data-source.bind="ps"
+                     k-value.two-way="this.selectedDetails.progressStatusId"
+                     style="width: 220px;">
+              </ak-drop-down-list>
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Closed Date:</label>
+          </div>
+          <div class="info-content">
+            <input type="text" class="callback-dialog-input" value.bind="selectedDetails.completedDate"/>
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Callback Code:</label>
+          </div>
+          <div class="droplist" style="width: 220px; display:inline-block">
+            <ak-drop-down-list k-data-text-field="name"
+                               k-data-value-field="id"
+                               k-data-source.bind="callbackCodes"
+                               k-value.two-way="selectedDetails.code"
+                               style="width: 220px;">
+            </ak-drop-down-list>
+          </div>
+        </div>
+        <div class="callback-dialog-textarea-row">
+          <div class="info-tag">
+            <label class="control-label">Repair Description:</label>
+          </div>
+          <div class="info-content">
+            <textarea class="callback-dialog-input" style="height: 100px" value.bind="selectedCallback.description"></textarea>
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Billable:</label>
+          </div>
+          <div class="info-content">
+            <input type="checkbox" />
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Invoice#</label>
+          </div>
+          <div class="info-content">
+            <input type="text" class="callback-dialog-input" />
+          </div>
+        </div>
+        <div class="callback-dialog-row">
+          <div class="info-tag">
+            <label class="control-label">Cost($)</label>
+          </div>
+          <div class="info-content">
+            <input type="text" class="callback-dialog-input" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="callback-note">
+      <a class="mnt-semi-bold-normal white-10pt choose" click.delegate="cn()">Callback Notes:</a>
+      <a class="mnt-semi-bold-normal white-10pt choose" click.delegate="mi()">Mechanics Information:</a>
+      <a class="mnt-semi-bold-normal white-10pt choose" click.delegate="pi()">Parts Information:</a>
+      <div class="callback-note-grid" style="display:${(page === 1) ? '' : 'none'}">
+        <div id="example">
+          <ak-grid k-pageable.bind="true" k-height.bind="200" k-editable.bind="true" k-data-source.bind="dispatch">
+            <ak-col k-field="dispatchTime" k-title="Dispatch Time" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+            <ak-col k-field="arrivalTime" k-title="Arrival Time" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+            <ak-col k-command="destroy" k-title=" " k-width="150px"></ak-col>
+          </ak-grid>
+        </div>
+      </div>
+      <div class="callback-note-grid" style="display:${(page === 2) ? '' : 'none'}">
+        <div id="example">
+          <ak-grid k-pageable.bind="true" k-height.bind="200" k-editable.bind="true" k-data-source.bind="dispatch">
+            <ak-col k-field="dispatchTime" k-title="Mechanic" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+            <ak-col k-field="arrivalTime" k-title="Arrival Time" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+            <ak-col k-command="destroy" k-title=" " k-width="150px"></ak-col>
+          </ak-grid>
+        </div>
+      </div>
+      <div class="callback-note-grid" style="display:${(page === 3) ? '' : 'none'}">
+        <div id="example">
+          <ak-grid k-pageable.bind="true" k-height.bind="200" k-editable.bind="true" k-data-source.bind="dispatch">
+            <ak-col k-field="dispatchTime" k-title="Parts Name" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+            <ak-col k-field="arrivalTime" k-title="Arrival Time" k-width="180px" k-editor.bind="categoryDropDownEditor" k-template.bind="categoryTemplate"></ak-col>
+            <ak-col k-command="destroy" k-title=" " k-width="150px"></ak-col>
+          </ak-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</template>
+
+     <!--<div class="col-xs-6">
+       <ak-drop-down-list k-data-text-field="name"
+                          k-data-value-field="id"
+                          k-data-source.bind="wtz"
+                          k-value.two-way="WorldTimeZone">
+       </ak-drop-down-list>
+     </div>-->
+

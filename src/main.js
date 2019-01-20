@@ -1,0 +1,56 @@
+import 'bootstrap';
+import '@progress/kendo-ui';
+import {Aurelia} from 'aurelia-framework';
+import {AuthService} from './services/auth-service';
+//import { setupValidationRules } from './resources/custom-validation-rules';
+import {WebClientConfig} from "./resources/web-client-config";
+//import 'whatwg-fetch/fetch';
+
+
+import environment from './environment';
+import {PLATFORM} from 'aurelia-pal';
+import 'babel-polyfill';
+import * as Bluebird from 'bluebird';
+
+// remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
+Bluebird.config({ warnings: { wForgottenReturn: false } });
+
+export function configure(aurelia) {
+  aurelia.use
+    .standardConfiguration()
+    .feature(PLATFORM.moduleName('resources/index'))
+    .plugin(PLATFORM.moduleName('aurelia-dialog'), config => {
+      config.useDefaults();
+      config.settings.lock = true;
+      config.settings.centerHorizontalOnly = false;
+      config.settings.startingZIndex = 1005;
+      config.settings.enableEscClose = true;
+    })
+    .plugin(PLATFORM.moduleName('aurelia-validation'))
+    ;
+
+  // Uncomment the line below to enable animation.
+  // aurelia.use.plugin(PLATFORM.moduleName('aurelia-animator-css'));
+  // if the css animator is enabled, add swap-order="after" to all router-view elements
+
+  // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
+  // aurelia.use.plugin(PLATFORM.moduleName('aurelia-html-import-template-loader'));
+
+  if (environment.debug) {
+    aurelia.use.developmentLogging();
+  }
+
+  if (environment.testing) {
+    aurelia.use.plugin(PLATFORM.moduleName('aurelia-testing'));
+  }
+
+  // return aurelia.start().then(() => aurelia.setRoot(PLATFORM.moduleName('auth-app')));
+  aurelia.start().then(() => {
+      //$.unblockUI();
+      var auth = aurelia.container.get(AuthService);
+      if (auth.isAuthenticated())
+          aurelia.setRoot(PLATFORM.moduleName('auth-app'));
+      else 
+          aurelia.setRoot(PLATFORM.moduleName('app'));
+  });
+}

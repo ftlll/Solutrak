@@ -1,0 +1,43 @@
+<template>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/common/template"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/grid/grid-command"></require>
+  <require from="aurelia-kendoui-bridge/dialog/dialog"></require>
+
+  <form id="myform">
+    <input name="username" required /> <br />
+    <input type="email" name="userEmail" required data-message="My custom email message" /> <br />
+    <button>Validate</button>
+  </form>
+
+  <script>
+    $("#myform").kendoValidator({
+      messages: {
+        // defines a message for the 'custom' validation rule
+        custom: "Please enter valid value for my custom rule",
+
+        // overrides the built-in message for the required rule
+        required: "My custom required message",
+
+        // overrides the built-in message for the email rule
+        // with a custom function that returns the actual message
+        email: function (input) {
+          return getMessage(input);
+        }
+      },
+      rules: {
+        custom: function (input) {
+          if (input.is("[name=username]")) {
+            return input.val() === "Tom";
+          }
+          return true;
+        }
+      }
+    });
+
+    function getMessage(input) {
+      return input.data("message");
+    }
+  </script>
+</template>

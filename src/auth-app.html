@@ -1,0 +1,25 @@
+<template>
+  <require from="bootstrap/dist/css/bootstrap.css"></require>
+  <require from='./css/font-shortcuts.css'></require>
+  <require from='./css/auth.css'></require>
+  <require from='./css/sidebar.css'></require>
+
+  <require from="@progress/kendo-ui/css/web/kendo.common.css"></require>
+  <require from="@progress/kendo-ui/css/web/kendo.moonlight.css"></require>
+  <div id="wrapper" class="toggled">
+    <div class="row">
+      <compose view="./templates/header.html" view-model="./templates/header" model.bind="auth"></compose>
+    </div>
+    <div class="wrapper full-page-wrapper">
+      <compose view="./templates/nav.html" view-model="./templates/nav" model.bind="auth"></compose>
+      <!-- Sidebar -->
+      <!-- /#sidebar-wrapper -->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <router-view></router-view>
+      </div>
+      <!-- /#page-content-wrapper -->
+    </div>
+    <loading-indicator loading.bind="router.isNavigating || api.client.isRequesting"></loading-indicator>
+  </div>
+</template>

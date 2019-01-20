@@ -1,0 +1,15 @@
+<template>
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li repeat.for="item of navController.items" style="display:
+             ${((item.route !== 'locations' && item.route !== 'portfolio') || (_roleCode == 'SA' || _roleCode == 'EA')) ?
+                 '':'none' }" class="sidebar-brand">
+        <a if.bind="item.isEnabled == true" click.delegate="navController.goTo(item)" title.bind="item.title" mouseenter.trigger="navController.onMouseEnter(item)" , mouseout.trigger="navController.onMouseOut(item)">
+          <img height.bind="item.imgHeight" src.bind="(item.isActive || item.isHovered) ? item.src+'-active.png':item.src+'.png'"
+               alt="mnu-item" />
+        </a>
+      </li>
+    </ul>
+  </div>
+</template>
+

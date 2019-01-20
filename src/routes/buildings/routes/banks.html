@@ -1,0 +1,94 @@
+<template>
+  <require from="aurelia-kendoui-bridge/grid/grid"></require>
+  <require from="aurelia-kendoui-bridge/grid/col"></require>
+  <require from="aurelia-kendoui-bridge/common/template"></require>
+  <require from="aurelia-kendoui-bridge/dialog/dialog"></require>
+  <require from="aurelia-kendoui-bridge/dropdownlist/dropdownlist"></require>
+  <require from="aurelia-kendoui-bridge/validator/validator"></require>
+
+  <require from="./banks.css"></require>
+  <require from="./devices"></require>
+
+  <div class="bank-section row">
+    <div class="table-card">
+      <div class="row">
+        <div class="bank-table-header">
+          <div class="col-xs-12">
+            <h3 class="pull-left mnt-regular-normal">Banks</h3>
+            <a class="btn btn-primary bank-create-btn mnt-regular-normal" click.delegate="createBank()"
+               style="display:${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }">CREATE BANK</a>
+          </div>
+        </div>
+      </div>
+      <ak-grid k-data-source.bind="banks"
+               k-selectable="row"
+               k-on-change.delegate="rowSelected($event.detail)">
+        <ak-col k-title="Bank Name" k-field="name"></ak-col>
+        <ak-col k-title="Description" k-field="description"></ak-col>
+        <ak-col k-title="Actions" k-width="${(_roleCode == 'SA' || _roleCode == 'EA') ?  '230px':'90px'}">
+          <ak-template>
+            <span click.delegate="editSelected(this)" class="k-button hide-on-narrow">Edit</span>
+            <span class="k-button hide-on-narrow" style="display:
+             ${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }">Delete</span>
+            <span class="k-button hide-on-narrow" style="display:
+             ${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }"
+                  click.delegate="cloneBank()">Clone</span>
+          </ak-template>
+        </ak-col>
+        <ak-template for="detailTemplate">
+          <devices banks.bind="this" devices.bind="devices" bankId.bind="id" buildingId.bind="buildingId"></devices>
+        </ak-template>
+      </ak-grid>
+    </div>
+  </div>
+  <div id="dialog"
+       ak-dialog="k-widget.bind: dialog;
+                      k-width: 400px;
+                      k-title: Bank Update;
+                      k-visible.bind: false;
+                      k-closable.bind: true;
+                      k-modal.bind: false;">
+    <form ak-validator="k-widget.bind: validator; k-rules.bind: rules"
+          data-role="validator"
+          novalidate="novalidate">
+      <div id="bank-form">
+        <div class="form-group">
+          <label for="bankTypeid" class="control-label">Bank Type</label>
+          <div style="display:
+             ${(_roleCode == 'SA' || _roleCode == 'EA') ?  '':'none' }">
+            <ak-drop-down-list k-data-text-field="name"
+                               k-data-value-field="id"
+                               k-data-source.bind="bankTypes"
+                               k-value.two-way="bankTypeId">
+            </ak-drop-down-list>
+          </div>
+          <div style="display:
+             ${(_roleCode == 'SA' || _roleCode == 'EA') ?  'none':'' }">
+            <input type="text" value.bind="BankName(selectedBank.bankTypeId)" class="building-input" placeholder="" disabled required /><br />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="bankName" class="control-label">Bank Name</label>
+          <div>
+            <input type="text" value.bind="selectedBank.name" class="building-input" validationMessage="Bank Name is required" placeholder="" required /><br />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="Description" class="control-label">Description</label>
+          <div>
+            <input type="text" value.bind="selectedBank.description" class="building-input" validationMessage="Acceptance is required" placeholder="" required /><br />
+          </div>
+        </div>
+        <button class="bank-save-btn" click.delegate="updateBank()"> Update</button>
+      </div>
+    </form>
+  </div>
+</template>
+<!--<label for="bankName" class="control-label">Bank Type</label>
+  <input type="text" name="bankName" value.bind="selectedBank.name" class="building-input" data-require-message="Bank name is required" placeholder="" required="required" /><br />
+  <span class="k-invalid-msg"></span>
+  <button class="bank-save-btn"> Update</button>
+</div>
+<script>
+  $("#bank-form").kendoValidator();
+</script>-->

@@ -1,0 +1,60 @@
+<template>
+  <require from="aurelia-kendoui-bridge/chart/chart"></require>
+
+  <div class="date-selection white-16p">
+    <p class="white-16p">Call backs of your buildings portfolio between<input type="date" value.bind="beginningDate" style="color: black" /> to <input type="date" value.bind="endingDate" style="color: black" /></p>
+    <p>
+      If you wish to change the date range, please modify the dates and click
+      <a class="btn btn-primary mnt-regular-normal" click.delegate="selectDate()">Retrive Data</a>button.
+    </p>
+  </div>
+  <table style="width: 100%">
+    <tr>
+      <td colspan="2">
+        <ak-chart k-title.bind="title"
+                  k-data-source.bind="entp"
+                  k-chart-area.bind="{ background: '#2A2C3B', width: 1400}"
+                  k-legend.bind="legend"
+                  k-series-defaults.bind="{type: 'pie'}"
+                  k-series.bind="series"
+                  k-on-series-click.delegate="onSeriesEntrapment($event.detail)"
+                  k-tooltip.bind="tooltip"
+                  view-model.ref="chart1"
+                  k-theme="MaterialBlack">
+
+        </ak-chart>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <ak-chart k-title.bind="titleBuilding"
+                  k-data-source.bind="entpb"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-legend.bind="legend"
+                  k-series-defaults.bind="{type: 'pie'}"
+                  k-series.bind="seriesBuilding"
+                  k-on-series-click.delegate="onSeriesEntrapmentBuilding($event.detail)"
+                  k-theme="MaterialBlack"
+                  view-model.ref="chart2"
+                  k-tooltip.bind="tooltip">
+        </ak-chart>
+      </td>
+
+      <td>
+        <ak-chart k-title.bind="titleDevice"
+                  k-data-source.bind="entpd"
+                  k-chart-area.bind="{ background: '#2A2C3B'}"
+                  k-legend.bind="{ visible: false }"
+                  k-series-defaults.bind="{type: 'column'}"
+                  k-series.bind="seriesDevice"
+                  k-value-axis.bind="valueDevice"
+                  k-category-axis.bind="categoryDevice"
+                  k-theme="MaterialBlack"
+                  view-model.ref="chart3"
+                  k-tooltip.bind="tooltip">
+        </ak-chart>
+      </td>
+    </tr>
+  </table>
+
+</template>

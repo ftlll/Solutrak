@@ -1,0 +1,40 @@
+.pill-nav{
+  width: 80%;
+  height: 60px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.info-grid {
+  margin-left: auto;
+  margin-right: auto;
+}
+  .pill-nav button {
+    font-family: 'Montserrat', sans-serif;
+    width: 16.33333%;
+    height: 60px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    float:left;
+    padding: 10px;
+    font-size: 17px;
+    border: 1px;
+    border-color: black;
+    border-top-left-radius: 25%;
+    border-top-right-radius: 25%;
+    background-color: #0026ff;
+  }
+
+  .pill-nav button:hover {
+    background-color: #00ffff;
+    color: black;
+  }
+
+  .pill-nav button.active {
+    background-color: dodgerblue;
+    color: white;
+  }
